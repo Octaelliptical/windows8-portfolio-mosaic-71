@@ -20,8 +20,8 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ['Segoe UI', 'sans-serif'],
-				segoe: ['Segoe UI', 'sans-serif'],
+				sans: ['Inter', 'sans-serif'],
+				chirp: ['Chirp', 'Inter', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -57,6 +57,15 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				x: {
+					blue: '#1DA1F2',
+					dark: '#15202B',
+					darker: '#0E1419',
+					light: '#FFFFFF',
+					lightGray: '#F7F9FA',
+					gray: '#657786',
+					border: '#38444D',
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -67,22 +76,6 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Windows 8 Theme Colors
-				win8: {
-					blue: '#0078D7',
-					green: '#5DC21E',
-					red: '#E81123',
-					yellow: '#FFB900',
-					teal: '#00B7C3',
-					purple: '#6B69D6',
-					orange: '#F7630C',
-					lime: '#BAD80A',
-					magenta: '#E3008C',
-					brown: '#8E562E',
-					dark: '#333333',
-					medium: '#666666',
-					light: '#F2F2F2',
-				}
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -98,14 +91,6 @@ export default {
 					from: { height: 'var(--radix-accordion-content-height)' },
 					to: { height: '0' }
 				},
-				'tile-hover': {
-					'0%': { transform: 'translateY(0)' },
-					'100%': { transform: 'translateY(-8px)' }
-				},
-				'tile-in': {
-					'0%': { transform: 'scale(0.9)', opacity: '0' },
-					'100%': { transform: 'scale(1)', opacity: '1' }
-				},
 				'fade-in': {
 					'0%': { opacity: '0' },
 					'100%': { opacity: '1' }
@@ -114,24 +99,17 @@ export default {
 					'0%': { transform: 'translateY(20px)', opacity: '0' },
 					'100%': { transform: 'translateY(0)', opacity: '1' }
 				},
-				'slide-left': {
-					'0%': { transform: 'translateX(20px)', opacity: '0' },
-					'100%': { transform: 'translateX(0)', opacity: '1' }
-				},
-				'slide-right': {
-					'0%': { transform: 'translateX(-20px)', opacity: '0' },
-					'100%': { transform: 'translateX(0)', opacity: '1' }
-				},
+				'hover-scale': {
+					'0%': { transform: 'scale(1)' },
+					'100%': { transform: 'scale(1.05)' }
+				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'tile-hover': 'tile-hover 0.3s ease forwards',
-				'tile-in': 'tile-in 0.5s ease forwards',
 				'fade-in': 'fade-in 0.5s ease forwards',
 				'slide-up': 'slide-up 0.5s ease forwards',
-				'slide-left': 'slide-left 0.5s ease forwards',
-				'slide-right': 'slide-right 0.5s ease forwards',
+				'hover-scale': 'hover-scale 0.3s ease forwards'
 			}
 		}
 	},

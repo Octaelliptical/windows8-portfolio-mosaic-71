@@ -3,71 +3,88 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 @layer base {
   :root {
-    --background: 0 0% 98%;
-    --foreground: 0 0% 20%;
+    --background: 215 21% 11%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 20%;
+    --card: 215 21% 16%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 20%;
+    --popover: 215 21% 16%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 207 100% 42%;
+    --primary: 203 89% 53%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 120 73% 44%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 215 16% 47%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 215 16% 25%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 355 86% 52%;
+    --accent: 203 89% 53%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 207 100% 42%;
+    --border: 215 16% 30%;
+    --input: 215 16% 30%;
+    --ring: 203 89% 53%;
 
-    --radius: 0;
-
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 0 0% 20%;
-    --sidebar-primary: 207 100% 42%;
+    --radius: 1rem;
+    
+    --sidebar-background: 215 21% 16%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 203 89% 53%;
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 0 0% 95%;
-    --sidebar-accent-foreground: 0 0% 20%;
-    --sidebar-border: 0 0% 90%;
-    --sidebar-ring: 207 100% 42%;
+    --sidebar-accent: 215 16% 25%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 215 16% 30%;
+    --sidebar-ring: 203 89% 53%;
   }
-}
 
-@font-face {
-  font-family: 'Segoe UI';
-  src: url('https://c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
+  .light {
+    --background: 0 0% 100%;
+    --foreground: 215 20% 16%;
 
-@font-face {
-  font-family: 'Segoe UI';
-  src: url('https://c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.woff2') format('woff2');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
+    --card: 0 0% 98%;
+    --card-foreground: 215 20% 16%;
 
-@font-face {
-  font-family: 'Segoe UI';
-  src: url('https://c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff2') format('woff2');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 20% 16%;
+
+    --primary: 203 89% 53%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 217 10% 90%;
+    --secondary-foreground: 215 20% 16%;
+
+    --muted: 217 10% 96%;
+    --muted-foreground: 215 20% 46%;
+
+    --accent: 203 89% 53%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 217 10% 90%;
+    --input: 217 10% 90%;
+    --ring: 203 89% 53%;
+    
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 215 20% 16%;
+    --sidebar-primary: 203 89% 53%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 217 10% 96%;
+    --sidebar-accent-foreground: 215 20% 16%;
+    --sidebar-border: 217 10% 90%;
+    --sidebar-ring: 203 89% 53%;
+  }
 }
 
 @layer base {
@@ -76,77 +93,48 @@
   }
 
   body {
-    @apply bg-background text-foreground font-segoe;
-    overflow-x: hidden;
+    @apply bg-background text-foreground font-sans antialiased;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-segoe font-light tracking-tighter;
+    @apply font-sans font-bold tracking-tight;
   }
 }
 
 @layer components {
-  .win8-tile {
-    @apply overflow-hidden relative transition-all duration-300 cursor-pointer shadow-sm;
-    transform: translateZ(0);
-    backface-visibility: hidden;
+  .x-container {
+    @apply max-w-[1265px] mx-auto px-4;
   }
 
-  .win8-tile:hover {
-    @apply shadow-md;
+  .x-layout {
+    @apply grid grid-cols-1 md:grid-cols-[auto_1fr] lg:grid-cols-[auto_1fr_auto] gap-0 min-h-screen;
   }
 
-  .win8-tile::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(255, 255, 255, 0);
-    transition: background-color 0.3s ease;
-    z-index: 10;
-  }
-
-  .win8-tile:hover::before {
-    background-color: rgba(255, 255, 255, 0.1);
+  .x-sidebar {
+    @apply hidden md:flex flex-col py-4 h-screen sticky top-0 w-[275px] border-r border-x-border;
   }
   
-  .win8-tile.size-1 {
-    @apply aspect-square w-full;
+  .x-right-sidebar {
+    @apply hidden lg:block w-[350px] h-screen sticky top-0 border-l border-x-border p-4;
   }
   
-  .win8-tile.size-2 {
-    @apply w-full aspect-[2/1];
-  }
-  
-  .win8-tile.size-4 {
-    @apply w-full aspect-[4/2];
+  .x-main {
+    @apply w-full max-w-[600px] mx-auto border-x border-x-border min-h-screen;
   }
 
-  .win8-container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  .x-nav-item {
+    @apply flex items-center space-x-4 p-3 rounded-full hover:bg-muted transition-colors text-xl font-medium;
   }
 
-  .section-padding {
-    @apply py-16 md:py-24;
+  .x-button {
+    @apply rounded-full bg-x-blue hover:bg-opacity-90 text-white font-bold py-3 px-6 transition-all;
   }
 
-  .page-transition-enter {
-    opacity: 0;
+  .x-card {
+    @apply border-b border-x-border p-4 hover:bg-muted/50 transition-colors cursor-pointer;
   }
 
-  .page-transition-enter-active {
-    opacity: 1;
-    transition: opacity 300ms;
-  }
-
-  .page-transition-exit {
-    opacity: 1;
-  }
-
-  .page-transition-exit-active {
-    opacity: 0;
-    transition: opacity 300ms;
+  .x-mobile-nav {
+    @apply fixed bottom-0 left-0 right-0 flex justify-around items-center p-3 bg-background border-t border-x-border md:hidden;
   }
 }

@@ -1,16 +1,17 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import Navbar from '../components/Navbar';
-import TileGrid from '../components/TileGrid';
-import Tile from '../components/Tile';
-import AboutSection from '../components/AboutSection';
-import ProjectsSection from '../components/ProjectsSection';
-import ContactSection from '../components/ContactSection';
-import { User, Briefcase, Phone, Mail, Code, Layout, Settings, ArrowDown } from 'lucide-react';
+import XSidebar from '../components/XSidebar';
+import XMobileNav from '../components/XMobileNav';
+import XRightSidebar from '../components/XRightSidebar';
+import ProjectCard from '../components/ProjectCard';
+import FloatingActionButton from '../components/FloatingActionButton';
+import { ThemeProvider } from '../hooks/useTheme';
 
 const Index = () => {
   const [currentSection, setCurrentSection] = useState('home');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
   const sectionRefs = {
     home: useRef<HTMLDivElement>(null),
     about: useRef<HTMLDivElement>(null),
@@ -23,6 +24,18 @@ const Index = () => {
     if (ref && ref.current) {
       ref.current.scrollIntoView({ behavior: 'smooth' });
     }
+    setCurrentSection(section);
+  };
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const handleDownloadCV = () => {
+    // Implement download functionality
+    console.log('Downloading CV...');
+    // In a real app, you would link to an actual PDF file
+    // window.open('/resume.pdf', '_blank');
   };
 
   useEffect(() => {
@@ -45,106 +58,122 @@ const Index = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const projects = [
+    {
+      id: 1,
+      title: 'E-commerce Website',
+      description: 'A modern online store built with React and Node.js. Features include product browsing, cart management, and secure checkout.',
+      image: 'https://via.placeholder.com/600x400',
+      tags: ['React', 'Node', 'MongoDB'],
+      likes: 124,
+      comments: 16,
+      link: '#',
+    },
+    {
+      id: 2,
+      title: 'Fitness App',
+      description: 'Mobile app for tracking workouts and nutrition. Users can create custom plans and monitor their progress over time.',
+      tags: ['React Native', 'Firebase'],
+      likes: 87,
+      comments: 9,
+      link: '#',
+    },
+    {
+      id: 3,
+      title: 'Admin Dashboard',
+      description: 'Comprehensive dashboard for data visualization with real-time updates, customizable widgets, and user management.',
+      image: 'https://via.placeholder.com/600x400',
+      tags: ['Vue', 'Express', 'D3.js'],
+      likes: 152,
+      comments: 23,
+      link: '#',
+    },
+    {
+      id: 4,
+      title: 'Social Media API',
+      description: 'Backend service for social media integration. Handles authentication, content delivery, and interaction metrics.',
+      tags: ['Node.js', 'GraphQL', 'MongoDB'],
+      likes: 68,
+      comments: 7,
+      link: '#',
+    },
+  ];
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navbar onNavigate={scrollToSection} currentSection={currentSection} />
-
-      {/* Hero Section */}
-      <section 
-        id="home" 
-        ref={sectionRefs.home}
-        className="pt-32 pb-24 min-h-screen flex items-center"
-      >
-        <div className="win8-container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <h1 className="text-4xl md:text-6xl font-light mb-6">
-                Hello, I'm <span className="font-normal text-win8-blue">John Doe</span>
-              </h1>
-              <p className="text-xl md:text-2xl text-gray-600 mb-8">
-                UI/UX Designer & Front-end Developer
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <button 
-                  onClick={() => scrollToSection('about')}
-                  className="px-8 py-3 bg-win8-blue text-white hover:bg-win8-blue/90 transition-colors"
-                >
-                  About Me
-                </button>
-                <button 
-                  onClick={() => scrollToSection('projects')}
-                  className="px-8 py-3 border border-win8-blue text-win8-blue hover:bg-win8-blue/10 transition-colors"
-                >
-                  View Projects
-                </button>
+    <ThemeProvider>
+      <div className="x-layout">
+        <XSidebar currentSection={currentSection} onNavigate={scrollToSection} />
+        
+        <main className="x-main">
+          <header className="sticky top-0 z-10 backdrop-blur-md bg-background/80 border-b border-x-border p-4">
+            <h1 className="text-xl font-bold">Portfolio</h1>
+          </header>
+          
+          <section ref={sectionRefs.home} id="home" className="min-h-screen">
+            <div className="p-4 border-b border-x-border">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                className="aspect-[3/1] bg-gradient-to-r from-primary/20 to-accent/20 rounded-2xl flex items-center justify-center mb-4"
+              >
+                <div className="text-center px-4">
+                  <h1 className="text-3xl md:text-4xl font-bold mb-2">John Doe</h1>
+                  <p className="text-xl text-muted-foreground">Frontend Developer & UI Designer</p>
+                </div>
+              </motion.div>
+              
+              <div className="flex items-center space-x-4 py-4">
+                <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-xl font-bold">
+                  JD
+                </div>
+                <div>
+                  <h2 className="text-xl font-bold">John Doe</h2>
+                  <p className="text-muted-foreground">@johndoe</p>
+                </div>
               </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              <TileGrid>
-                <Tile color="#0078D7" title="About Me" icon={<User />} delay={0} onClick={() => scrollToSection('about')} />
-                <Tile color="#5DC21E" title="Projects" icon={<Briefcase />} delay={1} onClick={() => scrollToSection('projects')} />
-                <Tile color="#00B7C3" title="Skills" icon={<Code />} delay={2} size={2} onClick={() => scrollToSection('about')} />
-                <Tile color="#E81123" title="Contact" icon={<Mail />} delay={3} onClick={() => scrollToSection('contact')} />
-                <Tile color="#FFB900" title="Experience" icon={<Layout />} delay={4} size={2} onClick={() => scrollToSection('about')} />
-                <Tile color="#6B69D6" title="Services" icon={<Settings />} delay={5} onClick={() => scrollToSection('about')} />
-              </TileGrid>
-            </motion.div>
-          </div>
-
-          <motion.div 
-            className="flex justify-center mt-16"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
-          >
-            <button 
-              onClick={() => scrollToSection('about')}
-              className="flex flex-col items-center text-gray-500 hover:text-win8-blue transition-colors"
-            >
-              <span className="mb-2">Scroll Down</span>
-              <ArrowDown className="animate-bounce" />
-            </button>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <div ref={sectionRefs.about}>
-        <AboutSection />
-      </div>
-
-      {/* Projects Section */}
-      <div ref={sectionRefs.projects}>
-        <ProjectsSection />
-      </div>
-
-      {/* Contact Section */}
-      <div ref={sectionRefs.contact}>
-        <ContactSection />
-      </div>
-
-      {/* Footer */}
-      <footer className="bg-win8-blue text-white py-8">
-        <div className="win8-container">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p>© 2023 John Doe. All rights reserved.</p>
-            <div className="flex space-x-4 mt-4 md:mt-0">
-              <a href="#" className="hover:text-gray-200 transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-gray-200 transition-colors">Terms of Service</a>
+              
+              <p className="text-foreground my-4">
+                Frontend developer passionate about creating beautiful, responsive web applications. Specialized in React and modern JavaScript.
+              </p>
+              
+              <div className="flex space-x-4 text-sm text-muted-foreground">
+                <span>📍 New York, NY</span>
+                <span>🔗 github.com/johndoe</span>
+                <span>📅 Joined 2021</span>
+              </div>
             </div>
+            
+            {/* Projects Feed */}
+            <div>
+              {projects.map(project => (
+                <ProjectCard key={project.id} {...project} />
+              ))}
+            </div>
+          </section>
+          
+          <div ref={sectionRefs.about} id="about" className="min-h-screen">
+            {/* About content will be loaded here */}
           </div>
-        </div>
-      </footer>
-    </div>
+          
+          <div ref={sectionRefs.projects} id="projects" className="min-h-screen">
+            {/* Projects content will be loaded here */}
+          </div>
+          
+          <div ref={sectionRefs.contact} id="contact" className="min-h-screen">
+            {/* Contact content will be loaded here */}
+          </div>
+        </main>
+        
+        <XRightSidebar />
+        <XMobileNav 
+          currentSection={currentSection} 
+          onNavigate={scrollToSection} 
+          toggleMobileMenu={toggleMobileMenu}
+        />
+        <FloatingActionButton onClick={handleDownloadCV} />
+      </div>
+    </ThemeProvider>
   );
 };
 

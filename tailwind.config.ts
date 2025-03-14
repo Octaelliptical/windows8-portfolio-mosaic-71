@@ -21,6 +21,7 @@ export default {
 		extend: {
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],
+				mono: ['JetBrains Mono', 'monospace'],
 				chirp: ['Chirp', 'Inter', 'sans-serif'],
 			},
 			colors: {
@@ -76,6 +77,10 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
+				terminal: {
+					green: 'hsl(var(--terminal-green))',
+					black: 'hsl(var(--terminal-black))',
+				}
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -102,6 +107,19 @@ export default {
 				'hover-scale': {
 					'0%': { transform: 'scale(1)' },
 					'100%': { transform: 'scale(1.05)' }
+				},
+				'blink': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0' }
+				},
+				'type-in': {
+					'0%': { width: '0' },
+					'100%': { width: '100%' }
+				},
+				'glitch': {
+					'0%, 100%': { transform: 'translateX(0)' },
+					'10%, 30%, 50%, 70%, 90%': { transform: 'translateX(-2px)' },
+					'20%, 40%, 60%, 80%': { transform: 'translateX(2px)' }
 				}
 			},
 			animation: {
@@ -109,7 +127,10 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.5s ease forwards',
 				'slide-up': 'slide-up 0.5s ease forwards',
-				'hover-scale': 'hover-scale 0.3s ease forwards'
+				'hover-scale': 'hover-scale 0.3s ease forwards',
+				'blink': 'blink 1s step-end infinite',
+				'type-in': 'type-in 2s steps(40, end)',
+				'glitch': 'glitch 0.3s ease-in-out infinite'
 			}
 		}
 	},

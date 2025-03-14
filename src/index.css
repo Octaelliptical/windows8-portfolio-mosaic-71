@@ -4,6 +4,7 @@
 @tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
 
 @layer base {
   :root {
@@ -45,6 +46,10 @@
     --sidebar-accent-foreground: 0 0% 98%;
     --sidebar-border: 215 16% 30%;
     --sidebar-ring: 203 89% 53%;
+    
+    /* Terminal specific colors */
+    --terminal-green: 120 100% 50%;
+    --terminal-black: 0 0% 0%;
   }
 
   .light {
@@ -84,6 +89,10 @@
     --sidebar-accent-foreground: 215 20% 16%;
     --sidebar-border: 217 10% 90%;
     --sidebar-ring: 203 89% 53%;
+    
+    /* Terminal specific colors */
+    --terminal-green: 120 100% 40%;
+    --terminal-black: 0 0% 0%;
   }
 }
 
@@ -93,11 +102,11 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-terminal-black text-terminal-green font-mono antialiased;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-sans font-bold tracking-tight;
+    @apply font-mono font-bold tracking-tight;
   }
 }
 
@@ -136,5 +145,107 @@
 
   .x-mobile-nav {
     @apply fixed bottom-0 left-0 right-0 flex justify-around items-center p-3 bg-background border-t border-x-border md:hidden;
+  }
+  
+  /* Terminal specific components */
+  .terminal-background {
+    @apply relative;
+  }
+  
+  .terminal-background::before {
+    content: "";
+    @apply absolute inset-0 bg-[url('/grid.svg')] opacity-[0.03] pointer-events-none;
+  }
+  
+  .text-terminal-green {
+    @apply text-[hsl(var(--terminal-green))];
+  }
+  
+  .bg-terminal-green {
+    @apply bg-[hsl(var(--terminal-green))];
+  }
+  
+  .bg-terminal-black {
+    @apply bg-[hsl(var(--terminal-black))];
+  }
+  
+  .border-terminal-green {
+    @apply border-[hsl(var(--terminal-green))];
+  }
+  
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  
+  .cursor-blink::after {
+    content: "_";
+    @apply animate-[blink_1s_step-end_infinite];
+  }
+  
+  .glitch-effect {
+    @apply relative overflow-hidden;
+  }
+  
+  .glitch-effect::before, .glitch-effect::after {
+    content: attr(data-text);
+    @apply absolute top-0 left-0 w-full;
+    clip: rect(0, 0, 0, 0);
+  }
+  
+  .glitch-effect::before {
+    @apply text-[rgba(255,0,128,0.7)] left-[2px] animate-[noise-anim_2s_infinite_linear_alternate-reverse];
+  }
+  
+  .glitch-effect::after {
+    @apply text-[rgba(0,255,255,0.7)] left-[-2px] animate-[noise-anim-2_3s_infinite_linear_alternate-reverse];
+  }
+  
+  @keyframes noise-anim {
+    0% { clip-path: inset(29% 0 25% 0); }
+    5% { clip-path: inset(9% 0 38% 0); }
+    10% { clip-path: inset(96% 0 1% 0); }
+    15% { clip-path: inset(75% 0 23% 0); }
+    20% { clip-path: inset(46% 0 50% 0); }
+    25% { clip-path: inset(3% 0 46% 0); }
+    30% { clip-path: inset(82% 0 4% 0); }
+    35% { clip-path: inset(88% 0 4% 0); }
+    40% { clip-path: inset(91% 0 8% 0); }
+    45% { clip-path: inset(96% 0 2% 0); }
+    50% { clip-path: inset(59% 0 38% 0); }
+    55% { clip-path: inset(41% 0 53% 0); }
+    60% { clip-path: inset(21% 0 47% 0); }
+    65% { clip-path: inset(89% 0 4% 0); }
+    70% { clip-path: inset(1% 0 95% 0); }
+    75% { clip-path: inset(86% 0 4% 0); }
+    80% { clip-path: inset(95% 0 5% 0); }
+    85% { clip-path: inset(54% 0 36% 0); }
+    90% { clip-path: inset(70% 0 27% 0); }
+    95% { clip-path: inset(6% 0 89% 0); }
+    100% { clip-path: inset(95% 0 5% 0); }
+  }
+  
+  @keyframes noise-anim-2 {
+    0% { clip-path: inset(76% 0 21% 0); }
+    5% { clip-path: inset(54% 0 7% 0); }
+    10% { clip-path: inset(55% 0 29% 0); }
+    15% { clip-path: inset(89% 0 3% 0); }
+    20% { clip-path: inset(33% 0 40% 0); }
+    25% { clip-path: inset(56% 0 8% 0); }
+    30% { clip-path: inset(23% 0 65% 0); }
+    35% { clip-path: inset(42% 0 41% 0); }
+    40% { clip-path: inset(26% 0 67% 0); }
+    45% { clip-path: inset(60% 0 8% 0); }
+    50% { clip-path: inset(97% 0 2% 0); }
+    55% { clip-path: inset(4% 0 91% 0); }
+    60% { clip-path: inset(48% 0 6% 0); }
+    65% { clip-path: inset(82% 0 11% 0); }
+    70% { clip-path: inset(52% 0 14% 0); }
+    75% { clip-path: inset(23% 0 37% 0); }
+    80% { clip-path: inset(38% 0 57% 0); }
+    85% { clip-path: inset(47% 0 33% 0); }
+    90% { clip-path: inset(28% 0 40% 0); }
+    95% { clip-path: inset(53% 0 25% 0); }
+    100% { clip-path: inset(67% 0 36% 0); }
   }
 }

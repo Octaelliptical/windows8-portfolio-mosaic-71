@@ -9,7 +9,7 @@ interface TileGridProps {
 const TileGrid = ({ children }: TileGridProps) => {
   return (
     <motion.div 
-      className="grid grid-cols-4 gap-2 auto-rows-max"
+      className="grid grid-cols-1 md:grid-cols-3 gap-4"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}

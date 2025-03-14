@@ -38,15 +38,15 @@ const Tile = ({
   const getSizeClasses = () => {
     switch (size) {
       case 'small':
-        return 'col-span-1 row-span-1 aspect-square';
+        return 'col-span-1 row-span-1';
       case 'medium':
-        return 'col-span-2 row-span-1 aspect-[2/1]';
+        return 'col-span-2 row-span-1';
       case 'wide':
-        return 'col-span-2 row-span-1 aspect-[2/1]';
+        return 'col-span-3 row-span-1';
       case 'large':
-        return 'col-span-2 row-span-2 aspect-square';
+        return 'col-span-2 row-span-2';
       default:
-        return 'col-span-1 row-span-1 aspect-square';
+        return 'col-span-1 row-span-1';
     }
   };
 
@@ -62,17 +62,16 @@ const Tile = ({
       onMouseLeave={() => setIsHovered(false)}
     >
       <div 
-        className="h-full w-full relative overflow-hidden"
-        style={{ backgroundColor: color }}
+        className="h-full w-full rounded-xl overflow-hidden border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900"
       >
         <div className="p-4 h-full flex flex-col justify-between">
-          {icon && <div className="text-white text-4xl mb-2">{icon}</div>}
-          <h3 className="text-white text-base font-light tracking-tight mt-auto">
+          {icon && <div className="text-gray-800 dark:text-white text-2xl mb-2">{icon}</div>}
+          <h3 className="text-gray-800 dark:text-white text-base font-medium">
             {title}
           </h3>
         </div>
         <motion.div
-          className="absolute inset-0 bg-white/10"
+          className="absolute inset-0 bg-black/5 dark:bg-white/5 rounded-xl"
           initial={{ opacity: 0 }}
           animate={{ opacity: isHovered ? 1 : 0 }}
           transition={{ duration: 0.2 }}

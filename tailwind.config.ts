@@ -22,7 +22,7 @@ export default {
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],
 				mono: ['JetBrains Mono', 'monospace'],
-				chirp: ['Chirp', 'Inter', 'sans-serif'],
+				poppins: ['Poppins', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -58,29 +58,12 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				x: {
-					blue: '#1DA1F2',
-					dark: '#15202B',
-					darker: '#0E1419',
-					light: '#FFFFFF',
-					lightGray: '#F7F9FA',
-					gray: '#657786',
-					border: '#38444D',
-				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				},
-				terminal: {
-					green: 'hsl(var(--terminal-green))',
-					black: 'hsl(var(--terminal-black))',
-				}
+				// Portfolio specific
+				highlight: 'hsl(var(--highlight))',
+				'background-dark': 'hsl(var(--background-dark))',
+				'background-light': 'hsl(var(--background-light))',
+				'text-primary': 'hsl(var(--text-primary))',
+				'text-secondary': 'hsl(var(--text-secondary))',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -88,49 +71,44 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			keyframes: {
-				'accordion-down': {
-					from: { height: '0' },
-					to: { height: 'var(--radix-accordion-content-height)' }
+				"accordion-down": {
+					from: { height: "0" },
+					to: { height: "var(--radix-accordion-content-height)" }
 				},
-				'accordion-up': {
-					from: { height: 'var(--radix-accordion-content-height)' },
-					to: { height: '0' }
+				"accordion-up": {
+					from: { height: "var(--radix-accordion-content-height)" },
+					to: { height: "0" }
 				},
-				'fade-in': {
-					'0%': { opacity: '0' },
-					'100%': { opacity: '1' }
+				"float": {
+					"0%, 100%": { transform: "translateY(0)" },
+					"50%": { transform: "translateY(-10px)" }
 				},
-				'slide-up': {
-					'0%': { transform: 'translateY(20px)', opacity: '0' },
-					'100%': { transform: 'translateY(0)', opacity: '1' }
+				"pulse-slow": {
+					"0%, 100%": { opacity: "0.4" },
+					"50%": { opacity: "0.8" }
 				},
-				'hover-scale': {
-					'0%': { transform: 'scale(1)' },
-					'100%': { transform: 'scale(1.05)' }
+				"spin-slow": {
+					from: { transform: "rotate(0deg)" },
+					to: { transform: "rotate(360deg)" }
 				},
-				'blink': {
-					'0%, 100%': { opacity: '1' },
-					'50%': { opacity: '0' }
-				},
-				'type-in': {
-					'0%': { width: '0' },
-					'100%': { width: '100%' }
-				},
-				'glitch': {
-					'0%, 100%': { transform: 'translateX(0)' },
-					'10%, 30%, 50%, 70%, 90%': { transform: 'translateX(-2px)' },
-					'20%, 40%, 60%, 80%': { transform: 'translateX(2px)' }
+				"wave": {
+					"0%": { transform: "rotate(0.0deg)" },
+					"10%": { transform: "rotate(14.0deg)" },
+					"20%": { transform: "rotate(-8.0deg)" },
+					"30%": { transform: "rotate(14.0deg)" },
+					"40%": { transform: "rotate(-4.0deg)" },
+					"50%": { transform: "rotate(10.0deg)" },
+					"60%": { transform: "rotate(0.0deg)" },
+					"100%": { transform: "rotate(0.0deg)" }
 				}
 			},
 			animation: {
-				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out',
-				'fade-in': 'fade-in 0.5s ease forwards',
-				'slide-up': 'slide-up 0.5s ease forwards',
-				'hover-scale': 'hover-scale 0.3s ease forwards',
-				'blink': 'blink 1s step-end infinite',
-				'type-in': 'type-in 2s steps(40, end)',
-				'glitch': 'glitch 0.3s ease-in-out infinite'
+				"accordion-down": "accordion-down 0.2s ease-out",
+				"accordion-up": "accordion-up 0.2s ease-out",
+				"float": "float 5s ease-in-out infinite",
+				"pulse-slow": "pulse-slow 4s ease-in-out infinite",
+				"spin-slow": "spin-slow 8s linear infinite",
+				"wave": "wave 1.5s infinite"
 			}
 		}
 	},

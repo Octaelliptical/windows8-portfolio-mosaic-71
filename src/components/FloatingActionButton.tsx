@@ -149,7 +149,13 @@ const FloatingActionButton = ({ onClick }: FloatingActionButtonProps) => {
   );
 };
 
-const FloatingOption = ({ icon, label, onClick }) => {
+interface FloatingOptionProps {
+  icon: React.ReactNode;
+  label: string;
+  onClick: () => void;
+}
+
+const FloatingOption = ({ icon, label, onClick }: FloatingOptionProps) => {
   return (
     <motion.div
       className="flex items-center cursor-pointer group"

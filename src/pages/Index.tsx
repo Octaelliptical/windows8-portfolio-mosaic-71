@@ -1,7 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ThemeProvider } from '../hooks/useTheme';
 import PageTransition from '../components/PageTransition';
 import FloatingActionButton from '../components/FloatingActionButton';
 import { useToast } from '../hooks/use-toast';
@@ -37,27 +36,25 @@ const Index = () => {
   };
 
   return (
-    <ThemeProvider>
-      <div className="min-h-screen bg-background text-foreground">
-        <AnimatePresence mode="wait">
-          {isHacking ? (
-            <PageTransition key="hacking">
-              <HackingAnimation />
-            </PageTransition>
-          ) : (
-            <PageTransition key="main">
-              <main className="overflow-hidden">
-                <Hero />
-                <FeaturesShowcase />
-                <AnimationShowcase />
-                <DataVisualization />
-                <FloatingActionButton onClick={handleDownloadCV} />
-              </main>
-            </PageTransition>
-          )}
-        </AnimatePresence>
-      </div>
-    </ThemeProvider>
+    <div className="min-h-screen bg-background text-foreground">
+      <AnimatePresence mode="wait">
+        {isHacking ? (
+          <PageTransition key="hacking">
+            <HackingAnimation />
+          </PageTransition>
+        ) : (
+          <PageTransition key="main">
+            <main className="overflow-hidden">
+              <Hero />
+              <FeaturesShowcase />
+              <AnimationShowcase />
+              <DataVisualization />
+              <FloatingActionButton onClick={handleDownloadCV} />
+            </main>
+          </PageTransition>
+        )}
+      </AnimatePresence>
+    </div>
   );
 };
 

@@ -1,42 +1,64 @@
 
 import React, { useEffect, useState, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Terminal from '../components/Terminal';
 import FloatingActionButton from '../components/FloatingActionButton';
 import { ThemeProvider } from '../hooks/useTheme';
+import PageTransition from '../components/PageTransition';
+import CapabilitiesShowcase from '../components/CapabilitiesShowcase';
+import { useToast } from '../hooks/use-toast';
 
 const Index = () => {
   const [isHacking, setIsHacking] = useState(true);
   const [currentSection, setCurrentSection] = useState('home');
+  const { toast } = useToast();
   
   useEffect(() => {
     // Simulate hacking animation for 3 seconds
     const timer = setTimeout(() => {
       setIsHacking(false);
+      toast({
+        title: "Access Granted",
+        description: "Welcome to the terminal portfolio",
+        variant: "default",
+      });
     }, 3000);
     
     return () => clearTimeout(timer);
-  }, []);
+  }, [toast]);
 
   const handleDownloadCV = () => {
-    console.log('Downloading CV...');
+    toast({
+      title: "CV Downloaded",
+      description: "Thank you for your interest in my profile!",
+      variant: "default",
+    });
   };
 
   return (
     <ThemeProvider>
       <div className="terminal-background min-h-screen bg-black text-terminal-green font-mono">
-        {isHacking ? (
-          <HackingAnimation />
-        ) : (
-          <div className="container mx-auto px-4 py-8">
-            <TerminalHeader />
-            <Terminal 
-              currentSection={currentSection}
-              onSectionChange={setCurrentSection}
-            />
-            <FloatingActionButton onClick={handleDownloadCV} />
-          </div>
-        )}
+        <AnimatePresence mode="wait">
+          {isHacking ? (
+            <PageTransition key="hacking">
+              <HackingAnimation />
+            </PageTransition>
+          ) : (
+            <PageTransition key="main">
+              <div className="container mx-auto px-4 py-8">
+                <TerminalHeader />
+                <Terminal 
+                  currentSection={currentSection}
+                  onSectionChange={setCurrentSection}
+                />
+                {currentSection === 'capabilities' && (
+                  <CapabilitiesShowcase />
+                )}
+                <FloatingActionButton onClick={handleDownloadCV} />
+              </div>
+            </PageTransition>
+          )}
+        </AnimatePresence>
       </div>
     </ThemeProvider>
   );

@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Download, Info, GitHub, Mail, X } from 'lucide-react';
+import { Download, Info, Github, Mail, X } from 'lucide-react';
 
 interface FloatingActionButtonProps {
   onClick: () => void;
@@ -37,7 +37,7 @@ const FloatingActionButton = ({ onClick }: FloatingActionButtonProps) => {
               onClick={() => handleOptionClick('cv')}
             />
             <FloatingOption 
-              icon={<GitHub size={20} />}
+              icon={<Github size={20} />}
               label="GitHub"
               onClick={() => handleOptionClick('github')}
             />

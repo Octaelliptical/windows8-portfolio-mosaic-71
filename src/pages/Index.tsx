@@ -1,13 +1,16 @@
-
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import PageTransition from '../components/PageTransition';
 import FloatingActionButton from '../components/FloatingActionButton';
 import { useToast } from '../hooks/use-toast';
-import Hero from '../components/Hero';
-import FeaturesShowcase from '../components/FeaturesShowcase';
-import AnimationShowcase from '../components/AnimationShowcase';
-import DataVisualization from '../components/DataVisualization';
+import ResumeHero from '../components/ResumeHero';
+import EducationSection from '../components/EducationSection';
+import ExperienceSection from '../components/ExperienceSection';
+import ProjectsSection from '../components/ProjectsSection';
+import SkillsSection from '../components/SkillsSection';
+import CertificationsSection from '../components/CertificationsSection';
+import VolunteeringSection from '../components/VolunteeringSection';
+import ContactSection from '../components/ContactSection';
 
 const Index = () => {
   const [isHacking, setIsHacking] = useState(true);
@@ -18,8 +21,8 @@ const Index = () => {
     const timer = setTimeout(() => {
       setIsHacking(false);
       toast({
-        title: "Welcome to Showcase",
-        description: "Explore our interactive portfolio of capabilities",
+        title: "Welcome to Karan's Portfolio",
+        description: "Explore my projects, skills, and experience",
         variant: "default",
       });
     }, 1500);
@@ -45,10 +48,14 @@ const Index = () => {
         ) : (
           <PageTransition key="main">
             <main className="overflow-hidden">
-              <Hero />
-              <FeaturesShowcase />
-              <AnimationShowcase />
-              <DataVisualization />
+              <ResumeHero />
+              <EducationSection />
+              <ExperienceSection />
+              <ProjectsSection />
+              <SkillsSection />
+              <CertificationsSection />
+              <VolunteeringSection />
+              <ContactSection />
               <FloatingActionButton onClick={handleDownloadCV} />
             </main>
           </PageTransition>
@@ -61,10 +68,10 @@ const Index = () => {
 const HackingAnimation = () => {
   const [text, setText] = useState('');
   const phrases = [
-    'Initializing showcase...',
-    'Compiling components...',
-    'Rendering capabilities...',
-    'Loading complete. Welcome.'
+    'Loading portfolio...',
+    'Compiling experience...',
+    'Gathering projects...',
+    'Ready to showcase. Welcome.'
   ];
 
   useEffect(() => {

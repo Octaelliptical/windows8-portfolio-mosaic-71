@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import PageTransition from '../components/PageTransition';
@@ -5,6 +6,7 @@ import FloatingActionButton from '../components/FloatingActionButton';
 import { useToast } from '../hooks/use-toast';
 import ResumeHero from '../components/ResumeHero';
 import EducationSection from '../components/EducationSection';
+import LeetCodeSection from '../components/LeetCodeSection';
 import ExperienceSection from '../components/ExperienceSection';
 import ProjectsSection from '../components/ProjectsSection';
 import SkillsSection from '../components/SkillsSection';
@@ -50,6 +52,7 @@ const Index = () => {
             <main className="overflow-hidden">
               <ResumeHero />
               <EducationSection />
+              <LeetCodeSection />
               <ExperienceSection />
               <ProjectsSection />
               <SkillsSection />

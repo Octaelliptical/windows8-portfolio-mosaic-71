@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import PageTransition from '../components/PageTransition';
@@ -30,7 +29,6 @@ const Index = () => {
   const { toast } = useToast();
   
   useEffect(() => {
-    // Simulate hacking animation for a shorter time (1.5 seconds)
     const timer = setTimeout(() => {
       setIsHacking(false);
       setShowConfetti(true);
@@ -40,7 +38,6 @@ const Index = () => {
         variant: "default",
       });
       
-      // Hide confetti after 5 seconds
       setTimeout(() => {
         setShowConfetti(false);
       }, 5000);
@@ -99,7 +96,6 @@ const Index = () => {
               <CertificationsSection />
               <VolunteeringSection />
               
-              {/* Magnetic Button Demo */}
               <section className="py-16 text-center">
                 <h2 className="text-3xl font-bold mb-8">Interactive Elements</h2>
                 <div className="flex justify-center">

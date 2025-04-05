@@ -15,20 +15,29 @@ import VolunteeringSection from '../components/VolunteeringSection';
 import ContactSection from '../components/ContactSection';
 import CapabilitiesShowcase from '../components/CapabilitiesShowcase';
 import AnimationShowcase from '../components/AnimationShowcase';
+import InteractiveBackground from '../components/InteractiveBackground';
+import { Sparkles } from 'lucide-react';
 
 const Index = () => {
   const [isHacking, setIsHacking] = useState(true);
+  const [showConfetti, setShowConfetti] = useState(false);
   const { toast } = useToast();
   
   useEffect(() => {
     // Simulate hacking animation for a shorter time (1.5 seconds)
     const timer = setTimeout(() => {
       setIsHacking(false);
+      setShowConfetti(true);
       toast({
         title: "Welcome to Karan's Portfolio",
         description: "Explore my projects, skills, and experience",
         variant: "default",
       });
+      
+      // Hide confetti after 5 seconds
+      setTimeout(() => {
+        setShowConfetti(false);
+      }, 5000);
     }, 1500);
     
     return () => clearTimeout(timer);
@@ -43,7 +52,9 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
+      {!isHacking && <InteractiveBackground />}
+      
       <AnimatePresence mode="wait">
         {isHacking ? (
           <PageTransition key="hacking">
@@ -51,7 +62,7 @@ const Index = () => {
           </PageTransition>
         ) : (
           <PageTransition key="main">
-            <main className="overflow-hidden">
+            <main className="relative z-20">
               <ResumeHero />
               <EducationSection />
               <LeetCodeSection />
@@ -64,6 +75,8 @@ const Index = () => {
               <CapabilitiesShowcase />
               <ContactSection />
               <FloatingActionButton onClick={handleDownloadCV} />
+              
+              {showConfetti && <Confetti />}
             </main>
           </PageTransition>
         )}
@@ -121,6 +134,76 @@ const HackingAnimation = () => {
         </div>
       </motion.div>
     </div>
+  );
+};
+
+const Confetti = () => {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 pointer-events-none z-50"
+    >
+      {Array.from({ length: 100 }).map((_, index) => (
+        <motion.div
+          key={index}
+          initial={{
+            x: Math.random() * window.innerWidth,
+            y: -20,
+            scale: Math.random() * 0.5 + 0.5,
+            rotate: Math.random() * 360
+          }}
+          animate={{
+            y: window.innerHeight + 20,
+            rotate: Math.random() * 720,
+          }}
+          transition={{
+            duration: Math.random() * 2 + 2,
+            ease: "easeOut",
+            delay: Math.random() * 0.5
+          }}
+          className="absolute"
+        >
+          <div
+            className="w-3 h-3"
+            style={{
+              backgroundColor: [
+                "#FF5E5B", "#D8D8D8", "#FFFFEA", "#00CECB", "#FFED66", 
+                "#3A86FF", "#FF006E", "#FFBE0B", "#FB5607", "#8338EC"
+              ][Math.floor(Math.random() * 10)],
+              borderRadius: Math.random() > 0.5 ? "50%" : "0"
+            }}
+          />
+        </motion.div>
+      ))}
+      
+      {Array.from({ length: 40 }).map((_, index) => (
+        <motion.div
+          key={`sparkle-${index}`}
+          initial={{
+            x: Math.random() * window.innerWidth,
+            y: -20,
+            scale: 0
+          }}
+          animate={{
+            y: window.innerHeight + 20,
+            scale: [0, 1, 0],
+            opacity: [0, 1, 0]
+          }}
+          transition={{
+            duration: Math.random() * 3 + 2,
+            ease: "easeOut",
+            delay: Math.random() * 0.5,
+            repeat: Math.round(Math.random() * 2),
+            repeatType: "reverse"
+          }}
+          className="absolute text-yellow-400"
+        >
+          <Sparkles size={24} />
+        </motion.div>
+      ))}
+    </motion.div>
   );
 };
 

@@ -9,6 +9,7 @@ interface TiltCardProps {
   tiltAmount?: number;
   glareAmount?: number;
   perspective?: number;
+  glowColor?: string;
 }
 
 const TiltCard = ({ 
@@ -17,7 +18,8 @@ const TiltCard = ({
   glareColor = 'rgba(255,255,255,0.4)', 
   tiltAmount = 10,
   glareAmount = 0.5,
-  perspective = 1000
+  perspective = 1000,
+  glowColor = 'rgba(66, 245, 111, 0.4)' // Default glow color using primary green
 }: TiltCardProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [rotateX, setRotateX] = useState(0);
@@ -59,18 +61,32 @@ const TiltCard = ({
         transition: isHovered ? 'none' : 'transform 0.5s ease-out',
         transformStyle: 'preserve-3d',
       }}
+      animate={{
+        boxShadow: isHovered 
+          ? `0 0 30px ${glowColor}`
+          : '0 0 0 rgba(0,0,0,0)'
+      }}
     >
       {children}
       
       {isHovered && (
-        <div 
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: `radial-gradient(circle at ${glarePosition.x}% ${glarePosition.y}%, ${glareColor} 0%, rgba(255,255,255,0) 70%)`,
-            opacity: glareAmount,
-            transform: 'translateZ(1px)'
-          }}
-        />
+        <>
+          <div 
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: `radial-gradient(circle at ${glarePosition.x}% ${glarePosition.y}%, ${glareColor} 0%, rgba(255,255,255,0) 70%)`,
+              opacity: glareAmount,
+              transform: 'translateZ(1px)'
+            }}
+          />
+          
+          <motion.div
+            className="absolute inset-0 pointer-events-none border-2 border-primary/40 rounded-[inherit] opacity-0"
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            style={{ transform: 'translateZ(1px)' }}
+          />
+        </>
       )}
     </motion.div>
   );

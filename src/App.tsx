@@ -7,7 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./hooks/useTheme";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import React from "react"; // Added React import
+import React, { useEffect } from "react";
 
 // Create the QueryClient instance outside the component
 const queryClient = new QueryClient({
@@ -21,6 +21,22 @@ const queryClient = new QueryClient({
 
 // Make sure App is defined as a proper React component function
 const App = () => {
+  // Apply theme class to document body
+  useEffect(() => {
+    // Apply base class for better styling
+    document.body.classList.add('font-sans', 'antialiased');
+    
+    // Check OS preference initially
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem('theme');
+    
+    if (savedTheme === 'light') {
+      document.documentElement.classList.add('light');
+    } else if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+      document.documentElement.classList.remove('light');
+    }
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>

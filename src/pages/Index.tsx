@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import PageTransition from '../components/PageTransition';
@@ -18,6 +19,9 @@ import InteractiveBackground from '../components/InteractiveBackground';
 import ScrollToTopButton from '../components/ScrollToTopButton';
 import TypewriterText from '../components/TypewriterText';
 import TiltCard from '../components/TiltCard';
+import CustomCursor from '../components/CustomCursor';
+import ParallaxSection from '../components/ParallaxSection';
+import MagneticButton from '../components/MagneticButton';
 import { Sparkles } from 'lucide-react';
 
 const Index = () => {
@@ -55,6 +59,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
+      <CustomCursor />
       {!isHacking && <InteractiveBackground />}
       
       <AnimatePresence mode="wait">
@@ -85,6 +90,7 @@ const Index = () => {
               </section>
 
               <ResumeHero />
+              <ParallaxSection />
               <EducationSection />
               <LeetCodeSection />
               <ExperienceSection />
@@ -92,6 +98,19 @@ const Index = () => {
               <SkillsSection />
               <CertificationsSection />
               <VolunteeringSection />
+              
+              {/* Magnetic Button Demo */}
+              <section className="py-16 text-center">
+                <h2 className="text-3xl font-bold mb-8">Interactive Elements</h2>
+                <div className="flex justify-center">
+                  <MagneticButton className="p-1">
+                    <button className="bg-primary text-primary-foreground px-8 py-4 rounded-lg font-semibold text-lg">
+                      Hover Me
+                    </button>
+                  </MagneticButton>
+                </div>
+              </section>
+              
               <AnimationShowcase />
               <CapabilitiesShowcase />
               <ContactSection />

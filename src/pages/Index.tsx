@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import PageTransition from '../components/PageTransition';
@@ -16,6 +15,9 @@ import ContactSection from '../components/ContactSection';
 import CapabilitiesShowcase from '../components/CapabilitiesShowcase';
 import AnimationShowcase from '../components/AnimationShowcase';
 import InteractiveBackground from '../components/InteractiveBackground';
+import ScrollToTopButton from '../components/ScrollToTopButton';
+import TypewriterText from '../components/TypewriterText';
+import TiltCard from '../components/TiltCard';
 import { Sparkles } from 'lucide-react';
 
 const Index = () => {
@@ -63,6 +65,25 @@ const Index = () => {
         ) : (
           <PageTransition key="main">
             <main className="relative z-20">
+              <section className="py-8 mb-8">
+                <div className="container mx-auto px-4">
+                  <TiltCard className="max-w-md mx-auto bg-card rounded-xl p-6 shadow-lg">
+                    <h2 className="text-2xl font-bold mb-2">About Me</h2>
+                    <TypewriterText 
+                      text={[
+                        "I'm a passionate developer.",
+                        "I build beautiful web applications.",
+                        "I love solving complex problems.",
+                        "Let's create something amazing together!"
+                      ]} 
+                      speed={40} 
+                      loop={true}
+                      className="text-lg text-primary"
+                    />
+                  </TiltCard>
+                </div>
+              </section>
+
               <ResumeHero />
               <EducationSection />
               <LeetCodeSection />
@@ -75,6 +96,7 @@ const Index = () => {
               <CapabilitiesShowcase />
               <ContactSection />
               <FloatingActionButton onClick={handleDownloadCV} />
+              <ScrollToTopButton />
               
               {showConfetti && <Confetti />}
             </main>
@@ -128,10 +150,18 @@ const HackingAnimation = () => {
         animate={{ opacity: 1 }}
         className="w-full max-w-2xl h-80 bg-background-light border border-primary/50 rounded-md p-6 overflow-hidden shadow-2xl"
       >
-        <div className="font-mono text-primary whitespace-pre-line text-lg">
-          {text}
-          <span className="animate-pulse">_</span>
-        </div>
+        <TypewriterText 
+          text={[
+            'Loading portfolio...',
+            'Compiling experience...',
+            'Gathering projects...',
+            'Ready to showcase. Welcome.'
+          ]}
+          speed={30}
+          delay={300}
+          className="font-mono text-primary text-lg"
+          cursorClassName="text-primary animate-pulse"
+        />
       </motion.div>
     </div>
   );

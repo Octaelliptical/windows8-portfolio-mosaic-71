@@ -13,6 +13,8 @@ import SkillsSection from '../components/SkillsSection';
 import CertificationsSection from '../components/CertificationsSection';
 import VolunteeringSection from '../components/VolunteeringSection';
 import ContactSection from '../components/ContactSection';
+import CapabilitiesShowcase from '../components/CapabilitiesShowcase';
+import AnimationShowcase from '../components/AnimationShowcase';
 
 const Index = () => {
   const [isHacking, setIsHacking] = useState(true);
@@ -58,6 +60,8 @@ const Index = () => {
               <SkillsSection />
               <CertificationsSection />
               <VolunteeringSection />
+              <AnimationShowcase />
+              <CapabilitiesShowcase />
               <ContactSection />
               <FloatingActionButton onClick={handleDownloadCV} />
             </main>

@@ -29,20 +29,20 @@ const ResumeHero = () => {
                 KARAN DUBEY
               </h1>
               <div className="text-xl text-primary font-medium mt-2">Computer Science Student & Web Developer</div>
+              
+              <motion.p 
+                className="text-lg text-muted-foreground max-w-md mt-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+              >
+                A passionate developer focused on creating modern, responsive web applications 
+                with a strong foundation in computer science and algorithms.
+              </motion.p>
             </motion.div>
             
-            <motion.p 
-              className="text-lg text-muted-foreground max-w-md"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-            >
-              A passionate developer focused on creating modern, responsive web applications 
-              with a strong foundation in computer science and algorithms.
-            </motion.p>
-            
             <motion.div 
-              className="flex flex-wrap gap-4 pt-4"
+              className="flex flex-col space-y-3 pt-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8, duration: 0.8 }}

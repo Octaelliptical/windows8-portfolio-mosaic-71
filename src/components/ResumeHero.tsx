@@ -41,20 +41,6 @@ const ResumeHero = () => {
               with a strong foundation in computer science and algorithms.
             </motion.p>
             
-            <motion.div
-              className="text-md text-muted-foreground/90 max-w-md rounded-lg border border-border/50 p-4 bg-card/50"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-            >
-              <p className="mb-2">
-                I'm a dedicated programmer with expertise in full-stack development, specializing in React, TypeScript, and modern web frameworks.
-              </p>
-              <p>
-                My goal is to build elegant, user-friendly applications that solve real-world problems. I'm constantly learning new technologies and refining my skills to stay at the cutting edge of web development.
-              </p>
-            </motion.div>
-            
             <motion.div 
               className="flex flex-wrap gap-4 pt-4"
               initial={{ opacity: 0 }}
@@ -121,6 +107,27 @@ const ResumeHero = () => {
             {/* Decorative elements */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full rounded-2xl border border-primary/30 -z-10 translate-x-5 translate-y-5"></div>
           </motion.div>
+        </motion.div>
+        
+        {/* About Me section */}
+        <motion.div
+          className="max-w-3xl mx-auto mt-16 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.6 }}
+        >
+          <h2 className="text-2xl font-bold mb-4">About Me</h2>
+          <div className="text-md text-muted-foreground rounded-lg border border-border/50 p-6 bg-card/50">
+            <p className="mb-4">
+              I'm a dedicated programmer with expertise in full-stack development, specializing in React, TypeScript, and modern web frameworks.
+            </p>
+            <p className="mb-4">
+              My goal is to build elegant, user-friendly applications that solve real-world problems. I'm constantly learning new technologies and refining my skills to stay at the cutting edge of web development.
+            </p>
+            <p>
+              Let's create something amazing together!
+            </p>
+          </div>
         </motion.div>
       </div>
     </section>

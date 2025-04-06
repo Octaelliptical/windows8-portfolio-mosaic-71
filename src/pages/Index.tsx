@@ -67,6 +67,25 @@ const Index = () => {
         ) : (
           <PageTransition key="main">
             <main className="relative z-20">
+              <section className="py-8 mb-8">
+                <div className="container mx-auto px-4">
+                  <TiltCard className="max-w-md mx-auto bg-card rounded-xl p-6 shadow-lg">
+                    <h2 className="text-2xl font-bold mb-2">About Me</h2>
+                    <TypewriterText 
+                      text={[
+                        "I'm a passionate developer.",
+                        "I build beautiful web applications.",
+                        "I love solving complex problems.",
+                        "Let's create something amazing together!"
+                      ]} 
+                      speed={40} 
+                      loop={true}
+                      className="text-lg text-primary"
+                    />
+                  </TiltCard>
+                </div>
+              </section>
+
               <ResumeHero />
               <ParallaxSection />
               <EducationSection />

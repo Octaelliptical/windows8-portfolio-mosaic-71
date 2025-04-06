@@ -14,12 +14,12 @@ const ResumeHero = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         <motion.div 
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+          className="flex flex-col items-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="space-y-6">
+          <div className="text-center max-w-3xl mx-auto space-y-6 mb-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -32,7 +32,7 @@ const ResumeHero = () => {
             </motion.div>
             
             <motion.p 
-              className="text-lg text-muted-foreground max-w-md"
+              className="text-lg text-muted-foreground"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
@@ -42,7 +42,7 @@ const ResumeHero = () => {
             </motion.p>
             
             <motion.div 
-              className="flex flex-wrap gap-4 pt-4"
+              className="flex flex-wrap justify-center gap-4 pt-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8, duration: 0.8 }}
@@ -67,7 +67,7 @@ const ResumeHero = () => {
           </div>
           
           <motion.div
-            className="relative"
+            className="relative max-w-lg w-full mx-auto mb-16"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.5, duration: 0.8 }}
@@ -111,7 +111,7 @@ const ResumeHero = () => {
         
         {/* About Me section */}
         <motion.div
-          className="max-w-3xl mx-auto mt-16 text-center"
+          className="max-w-3xl mx-auto mt-8 text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6 }}

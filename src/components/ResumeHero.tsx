@@ -41,6 +41,20 @@ const ResumeHero = () => {
               with a strong foundation in computer science and algorithms.
             </motion.p>
             
+            <motion.div
+              className="text-md text-muted-foreground/90 max-w-md rounded-lg border border-border/50 p-4 bg-card/50"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+            >
+              <p className="mb-2">
+                I'm a dedicated programmer with expertise in full-stack development, specializing in React, TypeScript, and modern web frameworks.
+              </p>
+              <p>
+                My goal is to build elegant, user-friendly applications that solve real-world problems. I'm constantly learning new technologies and refining my skills to stay at the cutting edge of web development.
+              </p>
+            </motion.div>
+            
             <motion.div 
               className="flex flex-wrap gap-4 pt-4"
               initial={{ opacity: 0 }}
